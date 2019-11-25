@@ -25,30 +25,10 @@
 //FIREBASE. ----------  ----------  ----------  ----------  ----------  ----------  ---------- //  
 
 
-// BOUNCER ----------  ----------  ----------  ----------  ----------  ----------  ---------- //  
-
-    var connectedRef = database.ref(".info/connected");
-    
-    var playerTable = database.ref("/players");
-
-  // Add user to the Connection List:
-    
-    
-    
-   
-
-  // // Display the number of people on the Connections List:
-  //   connectionsRef.on("value", function(snapshot) {
-  //   // The number of online users is the number of children in the connections list.
-  //   peopleInTheRoom = snapshot.numChildren();
-  //   // peopleInRoomEL.textContent= peopleInTheRoom; // This would show the people in the room on the screen
-  //   return peopleInTheRoom;
-  //   });
-
-    // function bouncer(){
-    //   console.log(`Bouncer: "there are ${peopleInTheRoom} people in the room."`)
-    // }
-// BOUNCER ----------  ----------  ----------  ----------  ----------  ----------  ---------- //  
+// CONNECTIONS ----------  ----------  ----------  ----------  ----------  ----------  ---------- //  
+  var connectedRef = database.ref(".info/connected");
+  var playerTable = database.ref("/players");
+// CONNECTIONS ----------  ----------  ----------  ----------  ----------  ----------  ---------- //  
 
 
 
@@ -58,8 +38,8 @@
 
 // A SHITLOAD OF DOM VARS ========== ========== ========== ========== ========== ========== ========== ========== //
 
-
-var bodyEl = document.getElementById("body");
+// General HTML
+  var bodyEl = document.getElementById("body");
     
 // Rooms
   var waitingRoomEl = document.getElementById("waitingRoomContainer");
@@ -68,7 +48,6 @@ var bodyEl = document.getElementById("body");
   var lockoutRoom = document.getElementById("lockoutRoom");
       lockoutRoom.style.display = "none";
     
-
 // GLOBAL DOM ELEMENTS
   var startButton = document.getElementById("startButton");
       startButton.style.display = "none";
@@ -93,7 +72,9 @@ var bodyEl = document.getElementById("body");
   var playerDisplayChoiceEl;
       playerDisplayChoiceEl = document.getElementById("player-displayChoice");
   var choiceButtonContainerEl = document.getElementById("choiceButtonContainer");
-
+  var rButtonEl = document.getElementById("choiceButton-R");
+  var pButtonEl = document.getElementById("choiceButton-P");
+  var sButtonEl = document.getElementById("choiceButton-S");
 
 
 
@@ -103,9 +84,6 @@ var bodyEl = document.getElementById("body");
   var dbP1;
   var dbP2;
   var dbGameOn;
-
-  // var player1 = "Ash"; // This is to determine what to display
-  // var player2 = "Gary";  // This is to determine what to display
 
   var player = false;
   var opponent = false;
@@ -137,7 +115,7 @@ function goToRoom(){
   } else if ( dbGameOn == true && inGame == false ){
     lockedOut();
   } else {
-  waitingRoom();
+    waitingRoom();
   }
 }
 
@@ -183,7 +161,7 @@ function goToRoom(){
         });
         database.ref(`/players/p1/inPlay`).set(true);
       // Change the Waiting Room:
-        waitingRoom();
+        // waitingRoom();
         hideStartButton();
   } else if (p2.inPlay == false) {
       // Set the Player:
@@ -242,16 +220,15 @@ function lockedOut() {
 
 // ---------- START GAME ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- 
 
-// TODO: Make this work:
+// Updates the browser tab:
 function changePageTab(){
-  pageTabEl.textContent = `Beat ${opponent}!`;
+  pageTabEl.textContent = `Beat ${opponent.name}!`;
 }
-
 
 
 // ---------- PLAY GAME ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- 
 
-
+var playerChoice
 
 function playGame() {
   // Change rooms:
@@ -261,7 +238,11 @@ function playGame() {
     displayPlayerName();  
     changePageTab();
     displayChoiceButtons();
-  // Set Game Values:
+    
+  // Player makes her choice:
+    rButtonEl.onclick = playerChoose;
+    pButtonEl.onclick = playerChoose;
+    sButtonEl.onclick = playerChoose;
 
 
   // Quit the game
@@ -323,9 +304,11 @@ function resetAll(){
   // Show results screen?
   player = false;
   opponent = false;
+  inGame = false,
   playerTable.set({
-    dbP1 : false,
-    dbP2 : false,
+    // dbP1 : false,
+    // dbP2 : false,
+    
     dbGameOn : false,
     p1 : {
       inPlay: false,
