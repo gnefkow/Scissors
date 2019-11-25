@@ -1,0 +1,271 @@
+/* =========== CLEAR ALL PRESET STUFF =========== */
+html {
+  font-size: 62.5%;
+} /* Sets the default size so you can use ems and rems */
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-size: 62.5%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html, body{
+  height: 100%;
+  width: 100%;
+  background-color: #62CCFF;
+}
+
+
+
+/* ********** ********** GENERAL UI COMPONENTS ********** ********** */
+
+.wrapper {
+  position: relative;
+  width: 60%;
+  max-width: 400px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+}
+
+.centeredLockup {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.titleText {
+  font-size: 4em;
+  text-align: center;
+}
+
+.subText {
+  font-size: 2em;
+  text-align: center;
+  padding: .5em 0 2em 0;
+}
+
+.room {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ********** ********** WAITING ROOM ********** ********** */
+.waitingRoom{
+  background-color: #66D7C4;
+  color: white;
+}
+
+.startButton {
+  background-color: #66D7C4;
+  color: white;
+  font-size: 2em;
+  padding: .75em;
+  border-radius: 1.25em;
+  border: 2px #72DAC9 solid;
+  width: 10em;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+}
+
+.waitingRoomContainer{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.waitingRoom-Image{
+  text-align: center;
+  font-size: 10em;
+}
+
+
+
+/* ********** ********** LOCKOUT ROOM ********** ********** */
+
+.lockoutRoom {
+  background-color: #333;
+  color: #ccc;
+  text-align: center;
+}
+
+.forceResetButton{
+  background-color: #333;
+  color: #ccc;
+  font-size: 2em;
+  padding: .75em;
+  border-radius: 1.25em;
+  border: 2px #444 solid;
+  width: 10em;
+  margin-top: 1.5em;
+  margin-bottom: .5em;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:    6px 6px 15px 0px rgba(0, 0, 0, 0.4);
+  box-shadow:         6px 6px 15px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ********** ********** PLAY SPACE ********** ********** */
+
+.exitButton{
+  z-index: 2;
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  height: 5em;
+  width: 5em;
+  background-color: #62CCFF;
+  border: #5DC2F2 2px solid;
+  border-radius: 2.5em;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+}
+
+.playSpace {
+  background-color: #62CCFF;
+}
+
+.opponentSpace {
+  background-color: #5DC2F2;
+  position: absolute;
+  top: 0;
+  height: 50%;
+  width: 100%;
+}
+
+.playerSpace{
+  background-color: #62CCFF;
+  /* background-color: red; */
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  
+}
+
+/* ** ** Names ** ** */
+.playspaceName {
+  position: relative;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 2em;
+  color: white;
+  width: 100%;
+}
+.playspaceOpponentName {
+  top: 0;
+}
+
+.playspacePlayerName {
+  bottom: 0;
+  position: absolute;
+}
+
+/* ** ** DISPLAY CHOICE ** ** */
+
+
+
+.choiceContainer {
+  /* background-color: red; */
+  position: absolute;
+  width: 100%;
+  margin: 10% 0 10% 0;
+
+}
+
+.displayChoice{
+  border-radius: 4em;
+  height: 8em;
+  width: 8em;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  font-size: 2em;
+  color: white;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+}
+
+
+.opponent-displayChoice {
+  bottom: 10%;
+  background-color: #5DC2F2;
+  border: #62CCFF 6px solid;
+}
+
+.player-displayChoice{
+  top: 10%;
+  background-color: #62CCFF;
+  border: #6ECFFF 6px solid;
+}
+
+
+/* ** ** CHOICE BUTTONS ** ** */
+.choiceButtonContainer{
+  position: absolute;
+  bottom: 15%;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+.choiceButtons {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.choiceButtons td{
+  height: 12em;
+  width: 12em;
+  color: white;
+  text-align: center;
+}
+
+.innerChoiceButton {
+  height: 80%;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 6em;
+  background-color: #62CCFF;
+  border: #6ECFFF 6px solid;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .wrapper {
+    width: 100%;
+  }
+}

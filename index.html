@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://kit.fontawesome.com/ead9e1b81c.js" crossorigin="anonymous"></script>
+    <!--BOOTSTRAP-->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Link to file-->
+      <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <!--GOOGLE FONTS: Lato.-->
+      <link href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap" rel="stylesheet"> 
+
+
+  <title id="tabTitle">Paper. Scisors. Rock.</title>
+</head>
+<body id="body">
+
+<div id="wrapper" class="wrapper">
+  <!-- WAITING ROOM ---------- ---------- ---------- ---------- ---------- ---------- ---------- -->
+  <!-- WAITING ROOM ---------- ---------- ---------- ---------- ---------- ---------- ---------- -->
+
+  <div id="waitingRoomContainer" class="container waitingRoomContainer waitingRoom room">
+    <div id="waitingRoomLockup" class="centeredLockup">
+    
+      <div id="waitingRoom-Image" class="waitingRoom-Image"><i class="fas fa-cut"></i></div>
+    
+      <div id="waitingRoom-titleText" class="col-md-12 titleText"></div>
+
+      <div id="waitingRoom-subText" class="col-md-12 subText"></div>
+    
+      <div id="waitingRoom-qr" class="col-md-12"></div>
+    
+      <div id="waitingRoom-startButton" class="col-md-12"></div>
+      <button id="startButton" class="startButton">start</button>
+    </div>
+
+  </div> <!-- WAITING ROOM ---------- ---------- ---------- ---------- ---------- ---------- ---------- -->
+
+
+
+  <!-- PLAY SPACE ---------- ---------- ---------- ---------- ---------- ---------- ---------- -->
+<!-- PLAY SPACE ---------- ---------- ---------- ---------- ---------- ---------- ---------- -->
+
+
+<div id="playSpace" class="playSpace room">
+    <!-- GENERAL UI -->
+    <div>
+      <div id="exitButton" class="exitButton"></div>
+    </div>
+  
+    <div>
+      <div id="replayButton" class="uiButton"></div>
+    </div>
+  
+  
+    <!-- Opponent Space -->
+    <div id="opponentSpace" class="playSpaceContainer">
+      <div id="opponentSpace" class="opponentSpace">
+  
+        <div id="opponentName" class="playspaceOpponentName playspaceName">GARY.0</div>
+  
+        <div class="row">
+          <div id="opponent-displayScore" class="col-md-12"></div>
+        </div>
+  
+        <div id="opponent-choiceContainer" class="choiceContainer">
+          <div id="opponent-displayChoice" class="opponent-displayChoice displayChoice"></div>
+        </div>
+    </div>
+  
+    <!-- Player Space -->
+      <div id="playerSpace" class="playerSpace">
+  
+        <div id="player-choiceContainer" class="choiceContainer">
+          <div id="player-displayChoice" class="player-displayChoice displayChoice">r</div>
+        </div>
+        
+  
+        
+        <div id="player-displayScore" class="col-md-12"></div>
+  
+        <div id="choiceButtonContainer" class="choiceButtonContainer">
+          <table id="choiceButtons" class="choiceButtons">
+            <tr>
+              <td><div class="innerChoiceButton">r</div></td>
+              <td><div class="innerChoiceButton">p</div></td>
+              <td><div class="innerChoiceButton"><i class="fas fa-cut"></i></div></td>
+            </tr>
+          </ul> 
+        </table>
+      </div>
+        
+        <div id="playerName" class="playspacePlayerName playspaceName">ASH.0</div>
+  
+      
+    </div>
+  </div>
+  </div> <!-- PLAY SPACE -->
+
+
+
+<!-- LOCKOUT ROOM -->
+  <div id="lockoutRoom" class="lockoutRoom room">
+    <div id="lockoutRoomTextLockup" class="centeredLockup">
+      <div class="titleText">Sorry, the room is full</div>
+      <div class="subtext">Try coming back later!</div>
+      <button id="forceResetButton" class="forceResetButton">Force Quit Game</button>
+      <div class="subtext">NOTE: The Force Quit button will end the game for everyone, only use it you're grading, de-bugging, or an asshole.</div>
+    </div>
+  </div>
+
+
+</div> <!-- WRAPPER-->
+
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+
+<!-- Local Javascript file link-->  
+<script src="assets/rps-game.js"></script> 
+</body>
+</html>
