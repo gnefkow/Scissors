@@ -15,9 +15,6 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-    
-
-    
 
     // Create a variable to reference the database
     var database = firebase.database();
@@ -29,9 +26,6 @@
   var connectedRef = database.ref(".info/connected");
   var playerTable = database.ref("/players");
 // CONNECTIONS ----------  ----------  ----------  ----------  ----------  ----------  ---------- //  
-
-
-
 
 
 
@@ -238,12 +232,15 @@ function playGame() {
     displayPlayerName();  
     changePageTab();
     displayChoiceButtons();
+    choiceButtonClicks();
     
   // Player makes her choice:
+  function choiceButtonClicks() {
     rButtonEl.onclick = playerChoose;
     pButtonEl.onclick = playerChoose;
     sButtonEl.onclick = playerChoose;
-
+    
+  }
 
   // Quit the game
   exitButton.onclick = endGame;
@@ -254,9 +251,6 @@ function displayPlayerName(){
     playerNameEl.textContent = `${player.name}.${player.score}`;
     opponentNameEl.style.display = "block";   
     opponentNameEl.textContent = `${opponent.name}.${opponent.score}`;
-  // Display Player and Opponent Choices:  
-    
-    
 }
 
 function displayChoiceButtons(){ // THIS DOESN"T WORK
@@ -283,7 +277,8 @@ function updateOpponentChoiceDisplay() {
 };
 
 function playerChoose(){
-  database.ref(`/players/${player.identifier}/choice`).set("S");
+  var choice = this.dataset.choice;
+  database.ref(`/players/${player.identifier}/choice`).set(choice);
   displayChoiceButtons();
 }
 
