@@ -120,12 +120,9 @@ html, body{
 
 
 /* ********** ********** PLAY SPACE ********** ********** */
-
-.exitButton{
+.uiButton{
   z-index: 2;
   position: fixed;
-  top: 1em;
-  left: 1em;
   height: 5em;
   width: 5em;
   background-color: #62CCFF;
@@ -135,6 +132,18 @@ html, body{
   -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
   box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);
 }
+
+.exitButton{
+  top: 1em;
+  left: 1em;
+}
+
+.replayButton{
+  bottom: 1.5em;
+  right: 1.5em;
+}
+
+
 
 .playSpace {
   background-color: #62CCFF;

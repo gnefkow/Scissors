@@ -62,6 +62,7 @@
   var opponentNameEl = document.getElementById("opponentName"); 
       opponentNameEl.style.display = "none";   
   var exitButton = document.getElementById("exitButton");
+  var replayButton = document.getElementById("replayButton");
   var opponentDisplayChoiceEl = document.getElementById("opponent-displayChoice");
   var playerDisplayChoiceEl;
       playerDisplayChoiceEl = document.getElementById("player-displayChoice");
@@ -95,10 +96,20 @@ database.ref("/players").on("value", function(snapshot) {
     dbP2 = snapshot.val().p2.inPlay;
     p1 = snapshot.val().p1;
     p2 = snapshot.val().p2;
+    p1Choice = snapshot.val().p1.choice;
+    p2Choice = snapshot.val().p2.choice;
     dbGameOn = snapshot.val().dbGameOn;
+
+  // Direct the players to their correct rooms:  
     goToRoom();
     if (inGame == true) {
       updateOpponentChoiceDisplay()
+    }
+  // See if the players have made choices  
+    if (p1Choice == "..." || p2Choice == "..."){
+      // do nothing
+    } else {
+      determineWinner();
     }
 });
 
@@ -219,7 +230,6 @@ function changePageTab(){
   pageTabEl.textContent = `Beat ${opponent.name}!`;
 }
 
-
 // ---------- PLAY GAME ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- 
 
 var playerChoice
@@ -227,6 +237,7 @@ var playerChoice
 function playGame() {
   // Change rooms:
     waitingRoomEl.style.display = "none";
+    replayButton.style.display = "none";
     playSpaceEl.style.display = "block";
     bodyEl.style.backgroundColor = "#5DC2F2";
     displayPlayerName();  
@@ -239,8 +250,10 @@ function playGame() {
     rButtonEl.onclick = playerChoose;
     pButtonEl.onclick = playerChoose;
     sButtonEl.onclick = playerChoose;
-    
   }
+
+  // Replay button appears and resets "Choice"
+  replayButton.onclick = replayClick;
 
   // Quit the game
   exitButton.onclick = endGame;
@@ -280,6 +293,19 @@ function playerChoose(){
   var choice = this.dataset.choice;
   database.ref(`/players/${player.identifier}/choice`).set(choice);
   displayChoiceButtons();
+}
+
+function determineWinner(){
+  console.log("return winner");
+  // if ()
+  // {console.log(`${p1.name} wins!`)}
+  replayButton.style.display = "block";
+}
+
+function replayClick(){
+  database.ref(`/players/${player.identifier}/choice`).set("...");
+  database.ref(`/players/${opponent.identifier}/choice`).set("...");
+  replayButton.style.display = "none";
 }
 
 
