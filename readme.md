@@ -14,6 +14,9 @@
 <h1>Status: WIP</h1>
 <hr>
 
+<h1>Play the game</h1>
+<p>This is a two player game, so grab a friend and <a href="https://gnefkow.github.io/Scissors/">send them this link to play!</a>. Note that, unfortunately, only two people can play at a time at this point, so if someone else is in the room, you can kick them out but that would be really mean, so use this power wisely!</p>
+
 <br>
 <br>
 

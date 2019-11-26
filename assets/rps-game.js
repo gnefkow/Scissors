@@ -103,13 +103,13 @@ database.ref("/players").on("value", function(snapshot) {
   // Direct the players to their correct rooms:  
     goToRoom();
     if (inGame == true) {
-      updateOpponentChoiceDisplay()
     }
   // See if the players have made choices  
     if (p1Choice == "..." || p2Choice == "..."){
-      // do nothing
+      opponentDisplayChoiceEl.innerHTML = `<i class="fas fa-ellipsis-h"></i>`;
     } else {
       determineWinner();
+      updateOpponentChoiceDisplay();
     }
 });
 
@@ -271,7 +271,6 @@ function displayChoiceButtons(){
     var pChoice = snapshot.val().choice;
 
     if (pChoice == "...") {
-      console.log(`pChoice is ${pChoice}`);
       playerDisplayChoiceEl.style.display = "none";
       choiceButtonContainerEl.style.display = "block";
     } else {

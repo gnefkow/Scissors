@@ -123,24 +123,30 @@ html, body{
 .uiButton{
   z-index: 2;
   position: fixed;
-  height: 5em;
-  width: 5em;
+  height: 2.5em;
+  width: 2.5em;
   background-color: #62CCFF;
-  border: #5DC2F2 2px solid;
   border-radius: 2.5em;
-  -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
-  -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
-  box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  font-size: 2em;
+  text-align: center;
 }
 
 .exitButton{
   top: 1em;
   left: 1em;
+  border: #51ADD7 2px solid;
+  background-color: #5DC2F2;
+  color: #51ADD7;
 }
 
 .replayButton{
   bottom: 1.5em;
   right: 1.5em;
+  border: white 2px solid;
+  color: white;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
+  box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);
 }
 
 
