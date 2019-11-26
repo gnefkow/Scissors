@@ -122,7 +122,7 @@ html, body{
 /* ********** ********** PLAY SPACE ********** ********** */
 .uiButton{
   z-index: 2;
-  position: fixed;
+  
   height: 2.5em;
   width: 2.5em;
   background-color: #62CCFF;
@@ -132,6 +132,7 @@ html, body{
 }
 
 .exitButton{
+  position: fixed;
   top: 1em;
   left: 1em;
   border: #51ADD7 2px solid;
@@ -140,6 +141,7 @@ html, body{
 }
 
 .replayButton{
+  position: absolute;
   bottom: 1.5em;
   right: 1.5em;
   border: white 2px solid;
@@ -200,20 +202,21 @@ html, body{
   /* background-color: red; */
   position: absolute;
   width: 100%;
-  margin: 10% 0 10% 0;
+  margin: 8% 0 auto 0;
 
 }
 
 .displayChoice{
   border-radius: 4em;
-  height: 8em;
-  width: 8em;
+  height: 4em;
+  width: 4em;
   left: 0;
   right: 0;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
-  font-size: 2em;
+  font-size: 5em;
+  padding-top: 1.2em;
   color: white;
   -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
   -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
@@ -222,9 +225,9 @@ html, body{
 
 
 .opponent-displayChoice {
-  bottom: 10%;
   background-color: #5DC2F2;
   border: #62CCFF 6px solid;
+
 }
 
 .player-displayChoice{
@@ -261,11 +264,12 @@ html, body{
 .innerChoiceButton {
   height: 80%;
   width: 80%;
-  margin-right: auto;
-  margin-left: auto;
+  margin: auto;
+  padding-top: .65em;
   border-radius: 6em;
   background-color: #62CCFF;
   border: #6ECFFF 6px solid;
+  font-size: 3em;
   -webkit-box-shadow: 6px 6px 15px 0px rgba(50, 50, 50, 0.23);
   -moz-box-shadow:    6px 6px 15px 0px rgba(50, 50, 50, 0.23);
   box-shadow:         6px 6px 15px 0px rgba(50, 50, 50, 0.23);

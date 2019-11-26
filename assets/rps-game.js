@@ -70,6 +70,8 @@
   var rButtonEl = document.getElementById("choiceButton-R");
   var pButtonEl = document.getElementById("choiceButton-P");
   var sButtonEl = document.getElementById("choiceButton-S");
+  var winnerDeclaration = document.getElementById("winnerDeclaration");
+      winnerDeclaration.style.display = "none";
 
 
 
@@ -84,6 +86,8 @@
   var opponent = false;
   var inGame = false;
 
+  var playerScore;
+  var opponentScore;
 
 
 // ---------- GAME STATUS ON LOAD / UPDATE ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- 
@@ -98,20 +102,33 @@ database.ref("/players").on("value", function(snapshot) {
     p2 = snapshot.val().p2;
     p1Choice = snapshot.val().p1.choice;
     p2Choice = snapshot.val().p2.choice;
+    p1Score = snapshot.val().p2.score;
+    p2Score = snapshot.val().p2.score;
     dbGameOn = snapshot.val().dbGameOn;
-
-  // Direct the players to their correct rooms:  
-    goToRoom();
-    if (inGame == true) {
-    }
-  // See if the players have made choices  
-    if (p1Choice == "..." || p2Choice == "..."){
-      opponentDisplayChoiceEl.innerHTML = `<i class="fas fa-ellipsis-h"></i>`;
-    } else {
-      determineWinner();
-      updateOpponentChoiceDisplay();
-    }
+    updateLocalValues()
+    postFirebasePull()
 });
+
+function updateLocalValues() {
+ playerSubmission = player.choice;
+ opponentSubmission = opponent.choice;
+ playerScore = player.score;
+ opponentScore=opponent.score;
+}
+
+function postFirebasePull() {
+  // Direct the players to their correct rooms:  
+  goToRoom();
+  if (inGame == true) {
+  }
+// See if the players have made choices  
+  if (p1Choice == "..." || p2Choice == "..."){
+    opponentDisplayChoiceEl.innerHTML = `<i class="fas fa-ellipsis-h"></i>`;
+  } else {
+    determineWinner();
+    updateOpponentChoiceDisplay();
+  }
+}
 
 function goToRoom(){
   // Determines which room to load based on game state:
@@ -221,8 +238,6 @@ function lockedOut() {
   };
 
 
-
-
 // ---------- START GAME ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- 
 
 // Updates the browser tab:
@@ -269,12 +284,23 @@ function displayPlayerName(){
 function displayChoiceButtons(){ 
   database.ref(`/players/${player.identifier}/`).on("value", function(snapshot) {
     var pChoice = snapshot.val().choice;
+    var icon
+    if (pChoice == "R"){
+      icon = `<i class="far fa-gem">`;
+    } else if (pChoice == "P"){
+      icon = `<i class="far fa-sticky-note">`;
+    }else if (pChoice == "S"){
+      icon = `<i class="fas fa-cut"></i>`;
+    } else {
+      icon = ":(";
+    }
 
     if (pChoice == "...") {
       playerDisplayChoiceEl.style.display = "none";
       choiceButtonContainerEl.style.display = "block";
     } else {
-      playerDisplayChoiceEl.textContent = pChoice;
+      console.log(icon);
+      playerDisplayChoiceEl.innerHTML = icon;
       playerDisplayChoiceEl.style.display = "block";
       choiceButtonContainerEl.style.display = "none";
     }
@@ -284,7 +310,17 @@ function displayChoiceButtons(){
 function updateOpponentChoiceDisplay() {
   database.ref(`/players/${opponent.identifier}/`).on("value", function(snapshot) {
     var oChoice = snapshot.val().choice;
-    opponentDisplayChoiceEl.textContent = oChoice;
+    var icon
+    if (oChoice == "R"){
+      icon = `<i class="far fa-gem">`;
+    } else if (oChoice == "P"){
+      icon = `<i class="far fa-sticky-note">`;
+    }else if (oChoice == "S"){
+      icon = `<i class="fas fa-cut"></i>`;
+    } else {
+      icon = ":(";
+    }
+    opponentDisplayChoiceEl.innerHTML = icon;
   })
 };
 
@@ -295,22 +331,32 @@ function playerChoose(){
 }
 
 function determineWinner(){
-  if (p1Choice == "R" && p2Choice == "S" || p1Choice == "S" && p2Choice == "P" || p1Choice == "P" && p2Choice == "R"){
-    console.log(`${p1.name} wins!`);
-  } else if (p2Choice == "R" && p1Choice == "S" || p2Choice == "S" && p1Choice == "P" || p2Choice == "P" && p1Choice == "R"){
-    console.log(`${p2.name} wins!`);
+  var roundWinner;
+  var winnerDeclarationText;
+
+  if (playerSubmission == "R" && opponentSubmission == "S" || playerSubmission == "S" && opponentSubmission == "P" || playerSubmission == "P" && opponentSubmission == "R"){
+    roundWinner = p1;
+    winnerDeclarationText = `${p1.name} Wins!!`
+    p1.score++;
+  } else if (opponentSubmission == "R" && playerSubmission == "S" || opponentSubmission == "S" && playerSubmission == "P" || opponentSubmission == "P" && playerSubmission == "R"){
+    roundWinner = p2;
+    winnerDeclarationText = `${p2.name} Wins!!`
+    p2.score++;
   } else if (p2Choice == p1Choice){
     console.log("Its a tie!");
   } else {
     console.log("something went wrong :(")
   }
   replayButton.style.display = "block";
+
+  winnerDeclaration.style.display = "none";
 }
 
 function replayClick(){
   database.ref(`/players/${player.identifier}/choice`).set("...");
   database.ref(`/players/${opponent.identifier}/choice`).set("...");
   replayButton.style.display = "none";
+  winnerDeclaration.style.display = "none";
 }
 
 
