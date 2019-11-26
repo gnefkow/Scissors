@@ -299,7 +299,6 @@ function displayChoiceButtons(){
       playerDisplayChoiceEl.style.display = "none";
       choiceButtonContainerEl.style.display = "block";
     } else {
-      console.log(icon);
       playerDisplayChoiceEl.innerHTML = icon;
       playerDisplayChoiceEl.style.display = "block";
       choiceButtonContainerEl.style.display = "none";
@@ -334,14 +333,13 @@ function determineWinner(){
   var roundWinner;
   var winnerDeclarationText;
 
-  if (playerSubmission == "R" && opponentSubmission == "S" || playerSubmission == "S" && opponentSubmission == "P" || playerSubmission == "P" && opponentSubmission == "R"){
+  if (p1Choice == "R" && p2Choice == "S" || p1Choice == "S" && p2Choice == "P" || p1Choice == "P" && p2Choice == "R"){
     roundWinner = p1;
-    winnerDeclarationText = `${p1.name} Wins!!`
-    p1.score++;
-  } else if (opponentSubmission == "R" && playerSubmission == "S" || opponentSubmission == "S" && playerSubmission == "P" || opponentSubmission == "P" && playerSubmission == "R"){
+    console.log(`${p1.name} Wins!!`);
+  } else if (p2Choice == "R" && p1Choice == "S" || p2Choice == "S" && p1Choice == "P" || p2Choice == "P" && p1Choice == "R"){
     roundWinner = p2;
-    winnerDeclarationText = `${p2.name} Wins!!`
-    p2.score++;
+    console.log(`${p2.name} Wins!!`);
+    
   } else if (p2Choice == p1Choice){
     console.log("Its a tie!");
   } else {
@@ -365,7 +363,6 @@ function replayClick(){
 
 
 function endGame() {
-  console.log(`endGame ran`);
   database.ref("/players").update({
     dbGameOn : "gameOver"
   });
