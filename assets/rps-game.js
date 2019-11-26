@@ -266,7 +266,7 @@ function displayPlayerName(){
     opponentNameEl.textContent = `${opponent.name}.${opponent.score}`;
 }
 
-function displayChoiceButtons(){ // THIS DOESN"T WORK
+function displayChoiceButtons(){ 
   database.ref(`/players/${player.identifier}/`).on("value", function(snapshot) {
     var pChoice = snapshot.val().choice;
 
@@ -296,9 +296,15 @@ function playerChoose(){
 }
 
 function determineWinner(){
-  console.log("return winner");
-  // if ()
-  // {console.log(`${p1.name} wins!`)}
+  if (p1Choice == "R" && p2Choice == "S" || p1Choice == "S" && p2Choice == "P" || p1Choice == "P" && p2Choice == "R"){
+    console.log(`${p1.name} wins!`);
+  } else if (p2Choice == "R" && p1Choice == "S" || p2Choice == "S" && p1Choice == "P" || p2Choice == "P" && p1Choice == "R"){
+    console.log(`${p2.name} wins!`);
+  } else if (p2Choice == p1Choice){
+    console.log("Its a tie!");
+  } else {
+    console.log("something went wrong :(")
+  }
   replayButton.style.display = "block";
 }
 
